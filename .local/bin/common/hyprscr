@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case "$1" in
+    "-w")
+        grim -g "$(hyprctl activewindow | awk '{if($1=="at:") at=$2; else if($1=="size:") {split($2, a, ","); printf "%s %dx%d", at, a[1], a[2]}}')"
+        hyprctl notify 5 2000 "rgba(33ccff33)" "Shot: Window"
+        ;;
+    "-s")
+        grim -g "$(slurp)"
+        hyprctl notify 5 2000 "rgba(33ccff33)" "Shot: Selected"
+        ;;
+    *)
+        grim
+        hyprctl notify 5 2000 "rgba(33ccff33)" "Shot: All"
+        ;;
+esac
+

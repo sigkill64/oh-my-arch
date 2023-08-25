@@ -1,0 +1,29 @@
+#!/bin/sh
+
+CONF_DIR=~/.config/xrandrs
+
+find_conf() {
+    find "$CONF_DIR" -mindepth 1 -maxdepth 1 -perm /u=x "$@" -exec basename {} \;
+}
+
+if [ $# -eq 0 ]; then
+    REG_FILES=($(find_conf -type f 2>/dev/null | sort -n))
+    SYN_FILES=($(find_conf -type l 2>/dev/null | sort -n))
+
+    echo Conf Scripts:
+    for FILE in ${REG_FILES[@]}; do
+        echo "  $FILE"
+    done
+    echo
+    echo Conf Links:
+    for FILE in ${SYN_FILES[@]}; do
+        echo "  $FILE -> $(readlink $CONF_DIR/$FILE)"
+    done
+else
+    FILES=($(find_conf -type l,f -name "$1*" 2>/dev/null | sort -n))
+    FILE_RUN="${FILES[0]}"
+    source $CONF_DIR/$FILE_RUN
+    code=$?
+    echo executed: ${FILE_RUN:-none} >&2
+    exit $code
+fi

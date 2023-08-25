@@ -1,0 +1,18 @@
+#!/bin/sh
+
+proxy='socks5h://proxy.sigkill.top:10086'
+
+case $1 in
+    on)
+        git config --global http.proxy $proxy
+        git config --global https.proxy $proxy
+        ;;
+    off)
+        git config --global --unset http.proxy
+        git config --global --unset https.proxy
+        ;;
+    *)
+        echo "http  : $(git config --get http.proxy)"
+        echo "https : $(git config --get https.proxy)"
+        ;;
+esac

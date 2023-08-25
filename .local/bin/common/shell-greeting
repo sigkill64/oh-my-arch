@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+curl --noproxy '*' http://motd.lanhost.top 2>/dev/null | tail -n 16 | sed '7,15s/^/0/' | lolcat -a -d 1 -s 120
+echo

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+set -e
+# Launch Polybar, using default config location ~/.config/polybar/config
+MONITORS=$(xrandr --listactivemonitors | head -n1 | cut -d' ' -f 2)
+if [ $MONITORS -ge 1 ]; then
+    CONF_PATH=~/.config/polybar/themes/default/config
+    MONITOR="$(xrandr --listactivemonitors | sed -n 2p | cut -d' ' -f6)" polybar -c "${CONF_PATH}" -q primary &
+    if [ $MONITORS -ge 2 ]; then
+        MONITOR="$(xrandr --listactivemonitors | sed -n 3p | cut -d' ' -f6)" polybar -c "${CONF_PATH}" -q second &
+    fi
+fi

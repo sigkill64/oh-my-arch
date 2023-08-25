@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+for chrm_bin in {chromium,{{google-,}chrome,{ms,}edge}{,-stable,-beta,-dev}}; do
+    if which $chrm_bin >/dev/null 2>&1; then
+         break
+    fi
+    echo 'No executable binary file' >&2
+    exit 1
+done
+
+if [[ -n "$XDG_RUNTIME_DIR" ]]; then
+    d_cache="$XDG_RUNTIME_DIR/$chrm_bin"
+else
+    d_cache="/tmp/$chrm_bin.$USER"
+fi
+
+GTK_A11Y=none exec "$chrm_bin" --gtk-version=4 --disk-cache-dir="$d_cache" "$@"

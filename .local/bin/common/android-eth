@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+[[ $# > 0 ]]
+
+case $1 in
+    'conn')
+        killall gnirehtet &>/dev/null || true
+        nohup gnirehtet run "$2" &>/dev/null &
+        if [[ $# > 1 ]]; then
+            scrcpy_args=('-s' "$2")
+        fi
+        adb shell 'settings put system screen_brightness_mode 0; settings put system screen_brightness 0'
+        scrcpy "${scrcpy_args[@]}"
+        adb shell 'settings put system screen_brightness_mode 1'
+        exit
+        ;;
+    'dark')
+        adb shell 'settings put system screen_brightness_mode 0; settings put system screen_brightness 0'
+        exit
+        ;;
+    'nets')
+        gnirehtet start
+        exit
+        ;;
+    'lock')
+        adb shell 'input keyevent 26'
+        exit
+        ;;
+esac

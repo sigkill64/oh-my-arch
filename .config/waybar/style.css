@@ -1,0 +1,64 @@
+* {
+  transition: none;
+  box-shadow: none;
+  font-family: "WenQuanYi Micro Hei Mono", "Font Awesome 6 Free";
+  font-size: 12.5px;
+  color: #89CFF0;
+  margin: 1px;
+}
+
+#waybar {
+  background: rgba(52,45,113,0.3);
+  border-radius: 16px;
+  border: 2px solid rgba(51,204,255,0.9);
+}
+
+#workspaces {
+  color: transparent;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  background-color: rgba(51,204,255,0.4);
+}
+
+#workspaces button.urgent {
+  color: rgba(246,71,71,0.8);
+}
+
+#tray {
+  border-radius: 12px;
+  background-color: rgba(51,204,255,0.4);
+}
+
+#tray * {
+  padding: 0 8px;
+  border-left: 1px solid black;
+}
+
+#tray *:first-child {
+  border-left: none;
+}
+
+#mode, #battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature {
+  padding: 0 6px;
+  border-radius: 20px;
+  min-width: 10px;
+  background-color: transparent;
+}
+
+#mpd *{
+  min-width: 10px;
+}
+
+#custom-gpu {
+  padding: 0 6px;
+}
+
+#temperature.critical {
+  color: #800020;
+}

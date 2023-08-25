@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case "$1" in
+    "-c")
+        kitty --name 'trans2zh' bash -c 'echo ''"''Any=>Zh''"'' & exec trans -x proxy.lanhost.top:10080 :zh'
+        ;;
+    *)
+        kitty --name 'trans2en' bash -c 'echo ''"''Any=>En''"'' & exec trans -x proxy.lanhost.top:10080'
+        ;;
+esac
+

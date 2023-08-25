@@ -1,0 +1,52 @@
+!!$HOME/.Xdefaults
+URxvt.preeditType: Root
+URxvt.inputMethod: fcitx
+
+!! Color
+!URxvt.depth: 12
+!URxvt.transparent: true
+!URxvt.shading: 50
+!URxvt.inheritPixmap: true
+URxvt.background: #020202
+URxvt.foreground: #ffffff
+URxvt.colorBD: Gray95
+URxvt.colorUL: Green
+URxvt.color1: Red2
+URxvt.color4: RoyalBlue
+URxvt.color5: Magenta2
+URxvt.color8: Gray50
+URxvt.color10: Green2
+URxvt.color12: DodgerBlue
+URxvt.color14: Cyan2
+URxvt.color15: Gray95
+
+!! URL
+URxvt.perl-ext-common: default,matcher,-searchable-scrollback
+URxvt.urlLauncher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+!URxvt.keysym.C-Delete: perl:matcher:last
+!URxvt.keysym.M-Delete: perl:matcher:list
+
+!! Scroll
+URxvt.scrollBar: False
+!URxvt.scrollBar_right: True
+!URxvt.scrollBar_floating: False
+!URxvt.scrollstyle: plain
+URxvt.mouseWheelScrollPage: True
+URxvt.scrollTtyOutput: False
+URxvt.scrollWithBuffer: True
+URxvt.scrollTtyKeypress: True
+URxvt.saveLines: 2000
+
+!! Cursor
+URxvt.cursorBlink: True
+
+!! Border
+URxvt.borderLess: False
+
+!! Font
+URxvt.font: xft:Source Code Pro:size=14, xft:WenQuanYi Zen Hei Mono:size=14, xft:FontAwesome:antialias=Ture:size=14, xft:PowerlineSymbols:size=14, xft:MesloLGS NF:size=14
+
+!! xcursor
+Xcursor.theme: default
+Xcursor.size: 30

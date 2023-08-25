@@ -1,0 +1,29 @@
+#!/bin/sh
+
+GEOMETRYS=$(xrandr --listactivemonitors | awk -- 'BEGIN { getline } /HDMI/{ gsub(/\/[[:digit:]]+/,"",$3) ; print $3 }')
+VNCD_CMDS=(x0vncserver x11vnc)
+VNCD_FLAGS=("-rfbauth $HOME/.vnc/passwd -Geometry $GEOMETRYS" "-usepw -display :0 -auth ~/.Xauthority -loop -clip $GEOMETRYS")
+
+vncd_valid() {
+    for CMD in ${VNCD_CMDS[@]}; do
+        if [ "$1" = "$CMD" ]; then
+            return
+        fi
+    done
+    return 1
+}
+
+if test -z $VNCD; then
+    CMD=${VNCD_CMDS[0]}
+elif ! vncd_valid $VNCD; then
+    exit 1
+fi
+
+killall ${VNCD_CMDS[@]} 2>/dev/null
+
+for i in ${!VNCD_CMDS[@]}; do
+#    exec xargs "${VNCD_CMDS[$i]}" <<EOF
+#${VNCD_FLAGS[$i]}
+#EOF
+    exec "${VNCD_CMDS[$i]}" ${VNCD_FLAGS[$i]}
+done
