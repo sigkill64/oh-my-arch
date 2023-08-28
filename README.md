@@ -27,8 +27,19 @@ Refer to `~/.config/nvim/lua/plugin/lspconfig.lua` and this [help page](https://
 
 ## Clone oh-my-zsh
 
-Clone [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh.git) to `~/.config/zsh/ohmyzsh/`:
+oh-my-zsh
 
 ```bash
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.config/zsh/ohmyzsh
+```
+zsh-autosuggestions
+
+```bash
+prosocks git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/ohmyzsh/custom/plugins/zsh-autosuggestions
+```
+
+powerlevel10k
+
+```bash
+prosocks git clone --depth=1 https://github.com/romkatv/powerlevel10k ~/.config/zsh/ohmyzsh/custom/themes/powerlevel10k
 ```
