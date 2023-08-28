@@ -14,9 +14,11 @@
 !/.config/htop/
 !/.config/hypr/
 !/.config/kitty/
-!/.config/psd/
 !/.config/pip/
 !/.config/waybar/
+
+!/.config/psd/
+/.config/psd/.psd.conf
 
 !/.config/nvim/
 /.config/nvim/plugin/
