@@ -100,6 +100,7 @@ M.setup = function()
     ----other lang
     --lc.cmake.setup(defaults)
     lc.yamlls.setup(defaults)
+    lc.marksman.setup(defaults)
 end
 
 return M

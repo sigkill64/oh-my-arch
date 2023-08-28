@@ -2,7 +2,7 @@
 
 ---
 
-You need do something manually.
+You need doing something manually.
 
 ## Install requirements
 
@@ -21,7 +21,7 @@ DIRArr[0]="$HOME/.cache"
 PSNAME="$browser"
 ```
 
-## Install LSP required by neovim
+## Install LSP servers required by neovim
 
 Refer to `~/.config/nvim/lua/plugin/lspconfig.lua` and this [help page](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md).
 
