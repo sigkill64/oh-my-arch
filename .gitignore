@@ -10,6 +10,7 @@
 !/.config/
 /.config/*
 
+!/.config/fontconfig/
 !/.config/htop/
 !/.config/hypr/
 !/.config/kitty/
