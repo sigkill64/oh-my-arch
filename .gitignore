@@ -40,11 +40,6 @@
 !/.local/share/
 /.local/share/*
 
-!/.local/share/fcitx5/
-/.local/share/fcitx5/*
-
-!/.local/share/fcitx5/rime/
-
 !/.local/share/icons/
 
 !/.cargo/
