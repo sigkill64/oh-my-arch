@@ -1,0 +1,15 @@
+#!/bin/bash
+
+e='⇠ Logout'
+u='⏾ Suspend'
+r='⭮ Reboot'
+s='⏻ Shutdown'
+
+selected="$(echo -e "$e\n$u\n$r\n$s" | wofi --lines=5 --dmenu --cache-file /dev/null)"
+
+case "$selected" in
+  "$e") exec hyprctl dispatch exit;;
+  "$u") exec systemctl suspend;;
+  "$r") exec systemctl reboot;;
+  "$s") exec systemctl poweroff -i;;
+esac
