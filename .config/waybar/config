@@ -1,15 +1,15 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 10,
+    "height": 23,
     "width": 1350,
     "margin": "3, 0, 2, 0",
     "fixed-center": true,
-    "modules-left": ["wlr/workspaces", "custom/recorder", "custom/audiorec"],
+    "modules-left": ["hyprland/workspaces", "mpris"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "wireplumber", "cpu", "custom/gpu", "temperature", "memory", "disk", "tray"],
+    "modules-right": ["network", "wireplumber", "tray"],
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "1": "1: ",
@@ -25,47 +25,38 @@
             "focused": "",
             "default": ""
         },
+        "show-special": true,
         "on-scroll-up": "hyprctl dispatch workspace e-1",
         "on-scroll-down": "hyprctl dispatch workspace e+1",
         "on-click": "activate"
     },
 
+    "mpris": {
+        "format": "{status_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "dynamic-order": ["title", "artist"],
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸"
+        },
+        "title-len": 48,
+        "artist-len": 16,
+        // "ignored-players": ["firefox"],
+    },
+
     "clock": {
         "interval": 1,
         "locale": "C", 
-        "format": "{:%I:%M %p}",
-        "format-alt": "{:%a,%b %d}" // Icon: calendar-alt
-    },
-
-    "cpu": {
-        "interval": 5,
-        "format": "{usage}%",
-        "max-length": 10,
-        "on-click": "kitty -e 'htop'"
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": "{avail:0.2f}GB",
-
-        "max-length": 10,
-        "tooltip": false,
-        "warning": 70,
-        "critical": 90
-    },
-
-    "temperature": {
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°",
-        "format": "{temperatureC}°",
+        "format": "{:%H:%M}",
+        "format-alt": " {:%b %d, %a}" // Icon: calendar-alt
     },
 
     "network": {
         "interval": 1,
-        "format": "{bandwidthDownBytes}",
+        "format": "{bandwidthTotalBytes} {icon}",
         "format-alt": "{icon}{ipaddr}/{cidr}",
         "format-alt-click": "click-right",
-        "format-wifi": "{icon}({signalStrength}%)",
+        "format-wifi": "{bandwidthTotalBytes} {icon}",
         "format-icons": {
             "wifi": ["睊", "直" ,""],
             "ethernet": [""],
@@ -77,23 +68,13 @@
     "wireplumber": {
       // "scroll-step": 1, // %, can be a float
       "format": "{icon}{volume}",
-      "format-muted": "{format_source} ",
+      "format-muted": "",
       "format-icons": ["", "", ""],
       "on-click": "helvum"
     },
 
     "tray": {
-        "icon-size": 15
-    },
-
-    "disk": {
-        "format": "{free}",
-        "interval": 120
-    },
-
-    "custom/gpu": {
-        "format": "{}%",
-        "restart-interval": 5,
-        "exec": "cat /sys/class/hwmon/hwmon2/device/gpu_busy_percent",
+        "icon-size": 15,
+        "spacing": 2,
     },
 }

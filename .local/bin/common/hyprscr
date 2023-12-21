@@ -1,17 +1,26 @@
 #!/bin/sh
 
+SAVE_PATH="$HOME/Pictures/Screenshot"
+if [ ! -d "$SAVE_PATH" ]; then
+    mkdir -p "$SAVE_PATH"
+fi
+
+_notify() {
+    hyprctl notify 5 2000 'rgba(33ccff33)' "$1"
+}
+
 case "$1" in
     "-w")
-        grim -g "$(hyprctl activewindow | awk '{if($1=="at:") at=$2; else if($1=="size:") {split($2, a, ","); printf "%s %dx%d", at, a[1], a[2]}}')"
-        hyprctl notify 5 2000 "rgba(33ccff33)" "Shot: Window"
+        grim -g "$(hyprctl activewindow | awk '{if($1=="at:") at=$2; else if($1=="size:") {split($2, a, ","); printf "%s %dx%d", at, a[1], a[2]}}')" "$SAVE_PATH/$(date '+%Y%m%d%H%M%S')Window.png"
+        _notify "Screenshot: Window"
         ;;
     "-s")
-        grim -g "$(slurp)"
-        hyprctl notify 5 2000 "rgba(33ccff33)" "Shot: Selected"
+        grim -g "$(slurp)" "$SAVE_PATH/$(date '+%Y%m%d%H%M%S')Area.png"
+        _notify "Screenshot: Area"
         ;;
     *)
-        grim
-        hyprctl notify 5 2000 "rgba(33ccff33)" "Shot: All"
+        grim "$SAVE_PATH/$(date '+%Y%m%d%H%M%S')Screen.png"
+        _notify "Screenshot: Screen"
         ;;
 esac
 

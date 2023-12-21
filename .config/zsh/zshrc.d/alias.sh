@@ -10,6 +10,7 @@ alias ls='ls --color=tty -F'
 
 # kitty
 alias icat='kitty +kitten icat'
+alias ssh='kitty +kitten ssh'
 
 # app
 alias trans='trans -x proxy.lanhost.top:10080'

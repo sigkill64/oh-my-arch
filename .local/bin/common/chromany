@@ -2,13 +2,17 @@
 
 set -e
 
-for chrm_bin in {chromium,{{google-,}chrome,{ms,}edge}{,-stable,-beta,-dev}}; do
-    if which $chrm_bin >/dev/null 2>&1; then
-         break
-    fi
-    echo 'No executable binary file' >&2
-    exit 1
-done
+if [[ -z "$CHRM_CMD" ]]; then
+    for chrm_bin in {chromium,brave,{vivaldi,{google-,}chrome,{ms,}edge}{,-stable,-beta,-dev}}; do
+        if which $chrm_bin >/dev/null 2>&1; then
+            break
+        fi
+        echo 'No executable binary file' >&2
+        exit 1
+    done
+else
+    chrm_bin="$CHRM_CMD"
+fi
 
 if [[ -n "$XDG_RUNTIME_DIR" ]]; then
     d_cache="$XDG_RUNTIME_DIR/$chrm_bin"

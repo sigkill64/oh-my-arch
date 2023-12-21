@@ -41,6 +41,7 @@
 /.local/share/*
 
 !/.local/share/icons/
+/.local/share/icons/hicolor/
 
 !/.cargo/
 /.cargo/*
