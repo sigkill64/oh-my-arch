@@ -31,9 +31,11 @@ kms('n', '<Leader>p', ':bprev<CR>')
 kms('n', '<Space>/', ':noh<CR>')
 
 -- editing
-kms('i', '<Leader>a', '<ESC>A')
 kms('i', '<Leader>w', '<ESC>:w<CR>a')
 kms('i', '<Leader>c', '<ESC>cc')
+kms('i', '<Leader>a', '<ESC>A')
+kms('i', '<Leader>;', '<ESC>A;')
+kms('i', '<Leader>,', '<ESC>A,')
 
 -- Move multi lines
 kms('v', 'J', ':m \'>+1<CR>gv=gv')

@@ -31,3 +31,6 @@ opt.clipboard:append("unnamedplus")
 
 opt.termguicolors = true
 opt.signcolumn = "yes"
+
+opt.list = true
+opt.listchars = { trail = '·', extends = '>'}

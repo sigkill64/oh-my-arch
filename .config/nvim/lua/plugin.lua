@@ -64,6 +64,18 @@ return require('packer').startup(function(use)
         } },
     }
 
+    -- Ai Coding
+    use {
+        'Exafunction/codeium.vim',
+        config = function()
+            local kms = vim.keymap.set
+            kms('i', '<C-l>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+            kms('i', '<C-.>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
+            kms('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+            kms('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+        end
+    }
+
     -- Markdown preview
     use {
         'toppair/peek.nvim',
@@ -130,13 +142,56 @@ return require('packer').startup(function(use)
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require('indent_blankline').setup {
-                show_current_context = true,
-                show_current_context_start = true,
+            local highlight = {
+                "RainbowRed",
+                "RainbowYellow",
+                "RainbowBlue",
+                "RainbowOrange",
+                "RainbowGreen",
+                "RainbowViolet",
+                "RainbowCyan",
             }
+            local hooks = require "ibl.hooks"
+            -- create the highlight groups in the highlight setup hook, so they are reset
+            -- every time the colorscheme changes
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+            end)
+
+            local rainbow_delimiters = require 'rainbow-delimiters'
+            vim.g.rainbow_delimiters = {
+                strategy = {
+                    [''] = rainbow_delimiters.strategy['global'],
+                    vim = rainbow_delimiters.strategy['local'],
+                },
+                query = {
+                    [''] = 'rainbow-delimiters',
+                    lua = 'rainbow-blocks',
+                },
+                priority = {
+                    [''] = 110,
+                    lua = 210,
+                },
+                highlight = highlight,
+            }
+            require("ibl").setup {
+                scope = { highlight = highlight },
+                exclude = {
+                    filetypes = { 'dashboard' }
+                },
+            }
+
+            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         end,
         requires = {
             'nvim-treesitter/nvim-treesitter',
+            'HiPhish/rainbow-delimiters.nvim',
         }
     }
 
@@ -188,28 +243,13 @@ return require('packer').startup(function(use)
             vim.g.floaterm_shell = 'Z_GREETING=0 /usr/bin/zsh'
             vim.g.floaterm_wintype = 'float'
             vim.g.floaterm_position = 'auto'
-            vim.g.floaterm_width = 128
-            vim.g.floaterm_height = 32
+            vim.g.floaterm_width = 86
+            vim.g.floaterm_height = 24
             vim.g.floaterm_autoclose = 2
             vim.g.floaterm_keymap_new = '<Leader>tt'
             vim.g.floaterm_keymap_prev = '<Leader>th'
             vim.g.floaterm_keymap_next = '<Leader>tl'
-            vim.g.floaterm_keymap_toggle = '<Leader><Leader>'
-        end
-    }
-
-    -- Color schema
-    use {
-        'Mofiqul/vscode.nvim',
-        config = function()
-            local vscode = require('vscode')
-            vscode.setup {
-                style = 'dark',
-                transparent = true,
-                italic_comments = true,
-                disable_nvimtree_bg = true,
-            }
-            vscode.load()
+            vim.g.floaterm_keymap_toggle = '<Leader>tj'
         end
     }
 
@@ -329,9 +369,7 @@ return require('packer').startup(function(use)
                     float = {
                         max_width = 40,
                         max_height = 5,
-                        close_on_cursor_move = true,
-                        enter_key = 'T',
-                    },
+                        close_on_cursor_move = true, enter_key = 'T', },
                 },
                 translate = {
                     {
@@ -373,5 +411,17 @@ return require('packer').startup(function(use)
         requires = {
             'niuiic/niuiic-core.nvim'
         },
+    }
+
+    -- colorscheme
+    use {
+        'Mofiqul/vscode.nvim',
+        config = function()
+            require('vscode').setup {
+                transparent = true,
+                italic_comments = true,
+                disable_nvimtree_bg = true,
+            }
+        end
     }
 end)

@@ -6,13 +6,14 @@ vim.g.loaded_netrwPlugin = 1
 require('base')
 require('keymap')
 
-require('custom.fcitx')
-
 if not vim.g.vscode then
     require('plugin')
     require('custom.smartcolumn')
+    vim.cmd.colorscheme 'vscode'
 end
 
 if vim.g.neovide then
     require('gui.neovide')
+else
+    require('custom.fcitx')
 end

@@ -10,7 +10,7 @@ jdtls.start_or_attach {
     end,
     capabilities = defaults.capabilities,
     cmd = {
-        vim.env.HOME .. '/.local/opt/lsp/jdtls/bin/jdtls',
+        vim.env.HOME .. '/usr/bin/jdtls',
     },
     root_dir = setup.find_root({ 'gradlew', '.git', 'mvnw' }),
     settings = {

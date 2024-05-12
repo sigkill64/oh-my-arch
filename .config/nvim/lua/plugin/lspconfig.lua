@@ -52,18 +52,18 @@ M.setup = function()
     lc.rust_analyzer.setup(defaults)
 
     --mixed lang
-    lc.jdtls.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = {
-            vim.env.HOME .. '/.local/opt/lsp/jdtls/bin/jdtls',
-        },
-        filetype = { "java" },
-        init_options = {
-            jvm_args = {},
-            workspace = os.getenv('XDG_RUNTIME_DIR') .. '/jdtls/workspace',
-        },
-    }
+    --lc.jdtls.setup {
+    --    on_attach = on_attach,
+    --    capabilities = capabilities,
+    --    cmd = {
+    --        vim.env.HOME .. '/.local/opt/lsp/jdtls/bin/jdtls',
+    --    },
+    --    filetype = { "java" },
+    --    init_options = {
+    --        jvm_args = {},
+    --        workspace = os.getenv('XDG_RUNTIME_DIR') .. '/jdtls/workspace',
+    --    },
+    --}
     lc.gradle_ls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
@@ -98,7 +98,7 @@ M.setup = function()
     lc.tsserver.setup(defaults)
 
     ----other lang
-    --lc.cmake.setup(defaults)
+    lc.cmake.setup(defaults)
     lc.yamlls.setup(defaults)
     lc.marksman.setup(defaults)
 end

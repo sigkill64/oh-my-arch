@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+MONITOR='DP-1'
+MPV_SOCK="$XDG_RUNTIME_DIR/mpv-socket-DP-1"
+
+_notify() {
+    hyprctl notify 5 2000 'rgba(33ccff33)' "$1"
+}
+
+case "$1" in
+    'run')
+        exec mpvpaper \
+            -o "no-audio --loop=inf --input-ipc-server=$MPV_SOCK" \
+            -p $MONITOR \
+            ~/Videos/.wallpaper
+        ;;
+    'play')
+        echo 'set pause no' | socat - $MPV_SOCK
+        ;;
+    'pause')
+        echo 'set pause yes' | socat - $MPV_SOCK
+        _notify "mpvpaper: paused"
+        ;;
+    'toggle')
+        echo 'cycle pause' | socat - $MPV_SOCK
+        _notify "mpvpaper: toggled"
+        ;;
+esac
+

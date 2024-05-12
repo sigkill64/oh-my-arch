@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 23,
+    "height": 34,
     "width": 1350,
     "margin": "3, 0, 2, 0",
     "fixed-center": true,
@@ -21,6 +21,7 @@
             "7": "7: ",
             "8": "8: ",
             "9": "9: ",
+            "10": "",
             "urgent": "",
             "focused": "",
             "default": ""
