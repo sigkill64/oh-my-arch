@@ -9,6 +9,7 @@ require('keymap')
 if not vim.g.vscode then
     require('plugin')
     require('custom.smartcolumn')
+    require('custom.compile')
     vim.cmd.colorscheme 'vscode'
 end
 

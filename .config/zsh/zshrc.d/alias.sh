@@ -10,7 +10,9 @@ alias ls='ls --color=tty -F'
 
 # kitty
 alias icat='kitty +kitten icat'
-alias ssh='kitty +kitten ssh'
+alias kssh='kitty +kitten ssh'
 
 # app
 alias trans='trans -x proxy.lanhost.top:10080'
+alias nvide='neovide --no-fork 2>/dev/null'
+alias vid='neovide --no-fork 2>/dev/null'

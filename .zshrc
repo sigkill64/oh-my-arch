@@ -1,7 +1,3 @@
-if [[ "$Z_GREETING" != 0 ]]; then
-    timeout 1.5 "${HOME}/.local/bin/common/shell-greeting"
-fi
-
 P10K_PROMPT="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 [[ -r "$P10K_PROMPT" ]] && source "$P10K_PROMPT"
 

@@ -64,6 +64,11 @@ return require('packer').startup(function(use)
         } },
     }
 
+    -- build compile and run
+    use {
+        'Zeioth/compiler.nvim'
+    }
+
     -- Ai Coding
     use {
         'Exafunction/codeium.vim',
@@ -71,7 +76,8 @@ return require('packer').startup(function(use)
             local kms = vim.keymap.set
             kms('i', '<C-l>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
             kms('i', '<C-.>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
-            kms('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+            kms('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+                { expr = true, silent = true })
             kms('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
         end
     }
@@ -240,7 +246,7 @@ return require('packer').startup(function(use)
     use {
         'voldikss/vim-floaterm',
         config = function()
-            vim.g.floaterm_shell = 'Z_GREETING=0 /usr/bin/zsh'
+            --vim.g.floaterm_shell = '/usr/bin/zsh'
             vim.g.floaterm_wintype = 'float'
             vim.g.floaterm_position = 'auto'
             vim.g.floaterm_width = 86
@@ -278,7 +284,9 @@ return require('packer').startup(function(use)
         tag = 'v1.*',
         after = 'nvim-web-devicons',
         config = function()
-            require('barbecue').setup()
+            require('barbecue').setup {
+                exclude_filetypes = { 'conf', 'toml' },
+            }
         end,
         requires = {
             'SmiteshP/nvim-navic',
