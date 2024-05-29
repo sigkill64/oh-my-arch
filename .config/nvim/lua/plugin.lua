@@ -204,7 +204,7 @@ return require('packer').startup(function(use)
     -- File tree
     use {
         'nvim-tree/nvim-tree.lua',
-        tag = 'nightly',
+        tag = 'v1.*',
         config = function()
             require('nvim-tree').setup {
                 view = {
@@ -285,7 +285,8 @@ return require('packer').startup(function(use)
         after = 'nvim-web-devicons',
         config = function()
             require('barbecue').setup {
-                exclude_filetypes = { 'conf', 'toml' },
+                show_dirname = false,
+                show_basename = false,
             }
         end,
         requires = {
@@ -295,10 +296,15 @@ return require('packer').startup(function(use)
     }
     use {
         'akinsho/bufferline.nvim',
-        tag = 'v3.*',
+        tag = 'v4.*',
         after = 'nvim-web-devicons',
         config = function()
-            require('bufferline').setup {}
+            vim.opt.termguicolors = true
+            require('bufferline').setup {
+                options = {
+                    diagnostics = 'nvim_lsp',
+                }
+            }
         end,
         requires = 'nvim-tree/nvim-web-devicons',
     }

@@ -1,64 +1,51 @@
 * {
-  transition: none;
-  box-shadow: none;
-  font-family: "WenQuanYi Micro Hei Mono", "Font Awesome 6 Free";
-  font-size: 12.5px;
-  color: #89CFF0;
-  margin: 1px;
+    transition: none;
+    box-shadow: none;
+    font-family: "Source Code Pro", "Font Awesome 6 Free";
+    font-size: 13px;
+    color: #cceeff;
+    margin: 1px;
+    border-radius: 16px;
 }
 
 #waybar {
-  background: rgba(52,45,113,0.3);
-  border-radius: 16px;
-  border: 2px solid rgba(51,204,255,0.9);
+    background: rgba(27, 29, 30, 0.7);
 }
 
 #workspaces {
-  color: transparent;
+    color: transparent;
 }
 
 #workspaces button {
-  padding: 0 8px;
-  border-radius: 10px;
+    padding: 0 8px;
+    color: transparent;
 }
 
 #workspaces button.active {
-  background-color: rgba(51,204,255,0.4);
+    background-color: rgba(27, 29, 30, 0.3);
+    color: transparent;
 }
 
 #workspaces button.urgent {
-  color: rgba(246,71,71,0.8);
+    color: rgba(246, 71, 71, 0.8);
 }
 
-#tray {
-  border-radius: 12px;
-  background-color: rgba(51,204,255,0.4);
-}
-
-#tray * {
-  padding: 0 8px;
-  border-left: 1px solid black;
-}
-
-#tray *:first-child {
-  border-left: none;
-}
-
-#mpris {
-    padding-left: 16px;
-}
-
-#mode, #battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature {
+#mpris, #clock, #network, #wireplumber, #tray {
   padding: 0 6px;
-  border-radius: 20px;
   min-width: 10px;
   background-color: transparent;
 }
 
-#mpd *{
-  min-width: 10px;
+#mpris {
+    padding-left: 16px;
+    font-family: "LXGW WenKai Mono", "Font Awesome 6 Free";
 }
 
-#temperature.critical {
-  color: #800020;
+#tray {
+    padding: 0 8px;
+    background-color: transparent;
+}
+
+#tray menu {
+    background-color: rgba(27, 29, 30, 0.4);
 }

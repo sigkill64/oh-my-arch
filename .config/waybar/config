@@ -1,9 +1,9 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 34,
-    "width": 1350,
-    "margin": "3, 0, 2, 0",
+    //"height": 20,
+    "width": 1680,
+    "margin": "5, 0, 0, 0",
     "fixed-center": true,
     "modules-left": ["hyprland/workspaces", "mpris"],
     "modules-center": ["clock"],

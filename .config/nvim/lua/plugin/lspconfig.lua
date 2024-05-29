@@ -91,6 +91,8 @@ M.setup = function()
     lc.pyright.setup(defaults)
     lc.bashls.setup(defaults)
 
+    lc.phpactor.setup(defaults)
+
     --frontend
     lc.cssls.setup(defaults)
     lc.html.setup(defaults)
@@ -100,7 +102,7 @@ M.setup = function()
     ----other lang
     lc.cmake.setup(defaults)
     lc.yamlls.setup(defaults)
-    lc.marksman.setup(defaults)
+    lc.markdown_oxide.setup(defaults)
 end
 
 return M

@@ -47,5 +47,6 @@
 /.cargo/*
 
 !/.cargo/config
+!/.cargo/config.toml
 
 !/.icons/

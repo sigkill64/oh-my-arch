@@ -1,11 +1,11 @@
 #!/bin/bash
 
-e='⇠ Logout'
-u='⏾ Suspend'
-r='⭮ Reboot'
-s='⏻ Shutdown'
+e='󰗽 Logout'
+u='󰖔 Suspend'
+r='󰑐 Reboot'
+s='󰐥 Shutdown'
 
-selected="$(echo -e "$e\n$u\n$r\n$s" | wofi --lines=5 --dmenu --cache-file /dev/null)"
+selected=$(echo -e "$e\n$u\n$r\n$s" | tofi "$@")
 
 case "$selected" in
   "$e") exec hyprctl dispatch exit;;

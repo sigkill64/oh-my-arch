@@ -3,21 +3,20 @@
 set -e
 
 if [[ -z "$CHRM_CMD" ]]; then
-    for chrm_bin in {chromium,brave,{vivaldi,{google-,}chrome,{ms,}edge}{,-stable,-beta,-dev}}; do
-        if which $chrm_bin >/dev/null 2>&1; then
+    for CHRM_CMD in {chromium,brave,{vivaldi,{google-,}chrome,{ms,}edge}{,-stable,-beta,-dev}}; do
+        if which "$CHRM_CMD" >/dev/null 2>&1; then
             break
         fi
         echo 'No executable binary file' >&2
         exit 1
     done
-else
-    chrm_bin="$CHRM_CMD"
 fi
 
+bin_name=$(basename "$CHRM_CMD")
 if [[ -n "$XDG_RUNTIME_DIR" ]]; then
-    d_cache="$XDG_RUNTIME_DIR/$chrm_bin"
+    dir_cache="$XDG_RUNTIME_DIR/$bin_name"
 else
-    d_cache="/tmp/$chrm_bin.$USER"
+    dir_cache="/tmp/$bin_name.$USER"
 fi
 
-GTK_A11Y=none exec "$chrm_bin" --gtk-version=4 --disk-cache-dir="$d_cache" "$@"
+GTK_A11Y=none exec "$CHRM_CMD" --gtk-version=4 --ozone-platform-hint=auto --disk-cache-dir="$dir_cache" "$@"

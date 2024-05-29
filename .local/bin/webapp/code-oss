@@ -1,0 +1,3 @@
+#!/bin/sh
+
+CHRM_CMD='/usr/bin/code-oss' exec chromany --enable-wayland-ime
